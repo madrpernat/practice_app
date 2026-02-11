@@ -1,7 +1,7 @@
 services:
   - type: web
     name: myapp-api
-    env: node
+    runtime: node
     rootDir: server
     plan: free
     buildCommand: npm install
@@ -11,7 +11,7 @@ services:
         fromService:
           name: myapp-web
           type: web
-          property: url
+          envVarKey: RENDER_EXTERNAL_URL
 
   - type: web
     name: myapp-web
@@ -25,4 +25,4 @@ services:
         fromService:
           name: myapp-api
           type: web
-          property: url
+          envVarKey: RENDER_EXTERNAL_URL
