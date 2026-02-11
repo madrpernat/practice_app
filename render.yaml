@@ -3,7 +3,6 @@ services:
     name: myapp-api
     runtime: node
     rootDir: server
-    plan: free
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -17,7 +16,6 @@ services:
     name: myapp-web
     runtime: static
     rootDir: web
-    plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
