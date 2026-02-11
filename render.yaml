@@ -10,12 +10,14 @@ services:
       - key: CORS_ORIGIN
         fromService:
           name: myapp-web
-          type: static
+          type: web
           property: url
 
-  - type: static
+  - type: web
     name: myapp-web
+    runtime: static
     rootDir: web
+    plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
