@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: myapp-api
+    env: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: CORS_ORIGIN
+        fromService:
+          name: myapp-web
+          type: static
+          property: url
+
+  - type: static
+    name: myapp-web
+    rootDir: web
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        fromService:
+          name: myapp-api
+          type: web
+          property: url
